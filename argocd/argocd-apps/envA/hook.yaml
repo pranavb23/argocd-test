@@ -1,0 +1,20 @@
+---
+# Source: platform/charts/argo-hook/templates/post-sync.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: argo-hook
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: post-sync-hook-test
+          imagePullPolicy: Never
+          image: argo-sync-hook
+          command:
+            - "./trigger.sh"
+      restartPolicy: Never
+  backoffLimit: 2
