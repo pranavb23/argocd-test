@@ -1,19 +1,20 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+---
+# Source: platform/charts/argo-hook/templates/post-sync.yaml
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: hooks-app
+  name: argo-hook
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: argocd/my-apps/hooks
-    repoURL: https://github.com/pranavb23/argocd-test.git
-    targetRevision: HEAD
+  template:
+    spec:
+      containers:
+        - name: post-sync-hook-test
+          imagePullPolicy: Never
+          image: argo-sync-hook
+          command:
+            - "./trigger.sh"
+      restartPolicy: Never
+  backoffLimit: 2
