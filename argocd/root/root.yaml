@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      jsonnet: {}
+      recurse: true
+    path: argocd/top-level-app
+    repoURL: https://github.com/pranavb23/argocd-test.git
+    targetRevision: HEAD
+  syncPolicy: {}
+
