@@ -12,7 +12,6 @@ spec:
     spec:
       containers:
         - name: post-sync-hook-test
-          imagePullPolicy: Never
           image: hello-world
       restartPolicy: Never
   backoffLimit: 2
