@@ -13,8 +13,6 @@ spec:
       containers:
         - name: post-sync-hook-test
           imagePullPolicy: Never
-          image: argo-sync-hook
-          command:
-            - "./trigger.sh"
+          image: hello-world
       restartPolicy: Never
   backoffLimit: 2
