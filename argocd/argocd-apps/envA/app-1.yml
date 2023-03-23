@@ -14,3 +14,9 @@ spec:
     path: argocd/my-apps/app-1
     repoURL: https://github.com/pranavb23/argocd-test.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
