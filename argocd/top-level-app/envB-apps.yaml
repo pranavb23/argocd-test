@@ -14,3 +14,9 @@ spec:
     path: argocd/argocd-apps/envB
     repoURL: https://github.com/pranavb23/argocd-test.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
