@@ -12,7 +12,7 @@ spec:
     directory:
       jsonnet: {}
       recurse: true
-    path: argocd/argocd-apps
+    path: argocd/top-level-app
     repoURL: https://github.com/pranavb23/argocd-test.git
     targetRevision: HEAD
   syncPolicy: {}
